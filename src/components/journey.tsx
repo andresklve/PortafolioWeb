@@ -85,10 +85,6 @@ export function Journey() {
           className="absolute top-2 bottom-14 left-[19px] w-px origin-top bg-accent md:left-[27px]"
         />
 
-        <Commit hash="●●●●●●●" message={t.journey.next.message} date="2026 →" pending>
-          {t.journey.next.detail}
-        </Commit>
-
         <Commit
           hash="a3f9c21"
           branch="HEAD → main"
@@ -100,9 +96,7 @@ export function Journey() {
               <Image src="/images/upc.png" alt="UPC" fill sizes="48px" className="scale-90 object-cover object-[50%_28%]" />
             </span>
           }
-        >
-          {t.journey.upc.detail}
-        </Commit>
+        />
 
         {/* rama lateral: experiencia en USA */}
         <div className="relative">

@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform, type MotionValue } from "motion/react";
 import { useEffect, useState } from "react";
-import { stack } from "@/lib/content";
+import Link from "next/link";
+import { coreStack, stack } from "@/lib/content";
 import { useLanguage } from "./language-provider";
 import { ease } from "./ui";
 import photo from "../../public/images/yo.jpeg";
@@ -106,15 +107,23 @@ export function Hero() {
             <span className="caret ml-1 inline-block h-5 w-2.5 bg-accent" />
           </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.25, duration: 0.8, ease }}
-            className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted"
+          <motion.ul
+            initial="hidden"
+            animate="show"
+            variants={{ show: { transition: { delayChildren: 1.25, staggerChildren: 0.05 } } }}
+            className="mt-8 flex max-w-xl flex-wrap gap-2"
+            aria-label="Stack"
           >
-            {t.hero.intro}{" "}
-            <em className="font-serif text-2xl text-fg italic">{t.hero.introAccent}</em>
-          </motion.p>
+            {coreStack.map((tech) => (
+              <motion.li
+                key={tech}
+                variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
+                className="rounded-lg border border-line-strong bg-white/[0.03] px-3 py-1.5 font-mono text-xs text-fg transition-colors hover:border-accent hover:text-accent"
+              >
+                {tech}
+              </motion.li>
+            ))}
+          </motion.ul>
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -122,22 +131,22 @@ export function Hero() {
             transition={{ delay: 1.4, duration: 0.8, ease }}
             className="mt-9 flex flex-wrap items-center gap-3"
           >
-            <a
-              href="#projects"
+            <Link
+              href="/proyectos"
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-accent px-5 py-3 text-sm font-semibold text-bg"
             >
               <span className="absolute inset-0 -translate-x-full bg-white/40 transition-transform duration-500 group-hover:translate-x-full" />
               <span className="relative">{t.hero.ctaProjects}</span>
-              <svg className="relative transition-transform group-hover:translate-y-0.5" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
-                <path d="M12 5v14M5 12l7 7 7-7" />
+              <svg className="relative transition-transform group-hover:translate-x-0.5" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
+                <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </a>
-            <a
-              href="#contact"
+            </Link>
+            <Link
+              href="/contacto"
               className="inline-flex items-center gap-2 rounded-xl border border-line-strong px-5 py-3 text-sm font-medium text-fg transition-colors hover:border-fg/40 hover:bg-white/5"
             >
               {t.hero.ctaContact}
-            </a>
+            </Link>
           </motion.div>
 
           <motion.div
@@ -146,13 +155,6 @@ export function Hero() {
             transition={{ delay: 1.6, duration: 0.8 }}
             className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-xs text-muted"
           >
-            <span className="flex items-center gap-2">
-              <span className="relative flex size-2">
-                <span className="pulse-ring absolute inset-0 rounded-full bg-accent" />
-                <span className="relative size-2 rounded-full bg-accent" />
-              </span>
-              {t.hero.status}
-            </span>
             <span className="flex items-center gap-2">
               <Image src="/images/peru.jpg" alt="Perú" width={20} height={13} className="h-[13px] w-5 rounded-[2px] object-cover" />
               {t.hero.location} · <LimaClock /> <span className="text-dim">UTC−5</span>

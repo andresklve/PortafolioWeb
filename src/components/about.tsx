@@ -31,7 +31,7 @@ export function About() {
         ))}
       </p>
 
-      <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-16 grid max-w-4xl gap-4 sm:grid-cols-2">
         {t.about.cards.map((card, i) => (
           <Reveal key={card.k} delay={i * 0.08}>
             <div

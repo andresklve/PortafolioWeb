@@ -2,7 +2,8 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { links, sectionIds } from "@/lib/content";
+import { useRouter } from "next/navigation";
+import { links, routes } from "@/lib/content";
 import { useLanguage } from "./language-provider";
 
 export const OPEN_PALETTE_EVENT = "cig:open-palette";
@@ -11,16 +12,21 @@ type Command = { id: string; label: string; hint: string; run: () => void };
 
 export function CommandPalette() {
   const { t, lang, toggleLang } = useLanguage();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [index, setIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const commands = useMemo<Command[]>(() => {
-    const go = (id: string) => () => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     const open = (url: string) => () => window.open(url, "_blank", "noopener,noreferrer");
     return [
-      ...sectionIds.map((id) => ({ id, label: `${t.palette.go} ${t.nav[id]}`, hint: `#${id}`, run: go(id) })),
+      ...routes.map(({ id, href }) => ({
+        id,
+        label: `${t.palette.go} ${t.nav[id]}`,
+        hint: href,
+        run: () => router.push(href),
+      })),
       { id: "github", label: `${t.palette.open} GitHub`, hint: "github.com/andresklve", run: open(links.github) },
       { id: "linkedin", label: `${t.palette.open} LinkedIn`, hint: "in/andresinfantass", run: open(links.linkedin) },
       { id: "piensaya", label: `${t.palette.open} PiensaYa`, hint: "repo", run: open("https://github.com/andresklve/PiensaYa") },
@@ -38,7 +44,7 @@ export function CommandPalette() {
       },
       { id: "lang", label: t.palette.switchLang, hint: lang === "es" ? "EN" : "ES", run: toggleLang },
     ];
-  }, [t, lang, toggleLang]);
+  }, [t, lang, toggleLang, router]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();

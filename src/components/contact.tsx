@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { AnimatePresence, motion, useInView } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { links } from "@/lib/content";
@@ -25,7 +24,6 @@ function Terminal() {
     ["role", "Backend Developer"],
     ["email", links.email],
     ["location", "Lima, Perú (UTC-5)"],
-    ["open_to", "internships · remote"],
   ];
 
   return (
@@ -102,24 +100,16 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className="relative mx-auto max-w-6xl px-5 pt-28 pb-16 md:px-8 md:pt-36">
+    <section id="contact" className="relative mx-auto max-w-6xl px-5 py-28 md:px-8 md:py-36">
       <SectionHeader
         index="05"
         label={t.contact.label}
-        title={
-          <>
-            {t.contact.title} <em className="font-serif font-normal text-accent italic">{t.contact.titleAccent}</em>
-          </>
-        }
+        title={t.contact.title}
       />
 
       <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr]">
         <div>
-          <Reveal>
-            <p className="max-w-md text-lg leading-relaxed text-muted">{t.contact.body}</p>
-          </Reveal>
-
-          <Reveal delay={0.1} className="mt-8">
+          <Reveal delay={0.1}>
             <div className="flex flex-wrap items-center gap-3">
               <a
                 href={`mailto:${links.email}`}
@@ -176,17 +166,6 @@ export function Contact() {
           <Terminal />
         </Reveal>
       </div>
-
-      <footer className="mt-28 flex flex-col items-start justify-between gap-4 border-t border-line pt-8 font-mono text-xs text-dim md:flex-row md:items-center">
-        <span>
-          © 2026 · {t.footer}
-        </span>
-        <span className="flex items-center gap-2">
-          <Image src="/images/peru.jpg" alt="Perú" width={18} height={12} className="h-3 w-[18px] rounded-[2px] object-cover" />
-          Lima, Perú · Next.js
-          <span className="text-accent">●</span>
-        </span>
-      </footer>
     </section>
   );
 }

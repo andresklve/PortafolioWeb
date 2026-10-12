@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Background } from "@/components/background";
+import { BootScreen } from "@/components/boot-screen";
+import { CommandPalette } from "@/components/command-palette";
 import { LanguageProvider } from "@/components/language-provider";
+import { Nav } from "@/components/nav";
+import { SiteFooter } from "@/components/site-footer";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -21,7 +26,10 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Carlos Andres Infantas Galindo — Backend Developer",
+  title: {
+    default: "Carlos Andres Infantas Galindo — Backend Developer",
+    template: "%s — Carlos Andres Infantas Galindo",
+  },
   description:
     "Portafolio de Carlos Andres Infantas Galindo: desarrollo backend, arquitectura de software y microservicios con Java, Spring Boot y TypeScript.",
 };
@@ -33,7 +41,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
     >
       <body className="min-h-screen">
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          <Background />
+          <CommandPalette />
+          <BootScreen>
+            <Nav />
+            <main className="relative z-10">{children}</main>
+            <SiteFooter />
+          </BootScreen>
+        </LanguageProvider>
       </body>
     </html>
   );

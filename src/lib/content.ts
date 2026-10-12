@@ -8,8 +8,16 @@ export const links = {
   github: "https://github.com/andresklve",
 };
 
-export const sectionIds = ["about", "stack", "projects", "journey", "contact"] as const;
-export type SectionId = (typeof sectionIds)[number];
+export const routes = [
+  { id: "home", href: "/" },
+  { id: "stack", href: "/stack" },
+  { id: "projects", href: "/proyectos" },
+  { id: "journey", href: "/trayectoria" },
+  { id: "contact", href: "/contacto" },
+] as const;
+export type RouteId = (typeof routes)[number]["id"];
+
+export const coreStack = ["Java", "Spring Boot", "TypeScript", "NestJS", "PostgreSQL", "MongoDB", "Redis", "RabbitMQ", "Docker"];
 
 export const stack = [
   { key: "languages", items: ["Java", "TypeScript", "JavaScript", "Python"] },
@@ -78,7 +86,7 @@ export const projects = [
 export const dict = {
   es: {
     nav: {
-      about: "sobre-mí",
+      home: "inicio",
       stack: "stack",
       projects: "proyectos",
       journey: "trayectoria",
@@ -101,10 +109,6 @@ export const dict = {
         "Microservicios & eventos",
         "Java · Spring Boot · NestJS",
       ],
-      intro:
-        "Estudiante de 7mo ciclo de Ingeniería de Sistemas de Información en la UPC. Construyo backends sólidos con Java, Spring Boot y TypeScript, con foco en arquitectura de software y sistemas que",
-      introAccent: "escalan.",
-      status: "Disponible para prácticas backend y trabajo remoto",
       ctaProjects: "Ver proyectos",
       ctaContact: "Contactar",
       location: "Lima, Perú",
@@ -112,7 +116,7 @@ export const dict = {
       photoMeta: [
         ["rol", "backend"],
         ["enfoque", "arquitectura"],
-        ["ciclo", "7 / 10"],
+        ["stack", "java · ts"],
         ["estado", "construyendo"],
       ],
     },
@@ -122,9 +126,7 @@ export const dict = {
       statement:
         "Apasionado por construir soluciones sólidas y en constante aprendizaje. Me enfoco en cómo se diseñan los sistemas: servicios con responsabilidades claras, comunicación por eventos y datos que viven donde deben vivir. Mi meta es crecer hacia el liderazgo técnico de equipos de desarrollo.",
       cards: [
-        { k: "ahora", v: "7mo ciclo · Ingeniería de Sistemas de Información, UPC" },
         { k: "enfoque", v: "Backend, arquitectura de software y sistemas escalables" },
-        { k: "busco", v: "Prácticas backend y trabajo remoto para empresas de USA" },
         { k: "rumbo", v: "Liderazgo técnico de equipos de desarrollo" },
       ],
     },
@@ -179,14 +181,9 @@ export const dict = {
       label: "trayectoria",
       title: "git log --graph",
       present: "actualidad",
-      next: {
-        message: "feat: prácticas backend",
-        detail: "Siguiente commit — buscando equipo.",
-      },
       upc: {
         message: "feat: Ingeniería de Sistemas de Información",
         org: "Universidad Peruana de Ciencias Aplicadas (UPC) · Lima, Perú",
-        detail: "Cursando el 7mo ciclo.",
       },
       safeway: {
         message: "work: Stocker en Safeway",
@@ -200,9 +197,7 @@ export const dict = {
     },
     contact: {
       label: "contacto",
-      title: "¿Construimos algo",
-      titleAccent: "juntos?",
-      body: "Estoy buscando prácticas de backend y oportunidades remotas. Si tienes un proyecto o un puesto, escríbeme.",
+      title: "Contacto",
       copy: "Copiar correo",
       copied: "¡Copiado!",
       whatsapp: "WhatsApp",
@@ -216,10 +211,11 @@ export const dict = {
       switchLang: "Cambiar a inglés",
     },
     footer: "Diseñado y construido por Carlos Andres Infantas Galindo",
+    nextPage: "Siguiente",
   },
   en: {
     nav: {
-      about: "about",
+      home: "home",
       stack: "stack",
       projects: "projects",
       journey: "journey",
@@ -242,10 +238,6 @@ export const dict = {
         "Microservices & events",
         "Java · Spring Boot · NestJS",
       ],
-      intro:
-        "Information Systems Engineering student (7th term) at UPC. I build solid backends with Java, Spring Boot and TypeScript, focused on software architecture and systems that",
-      introAccent: "scale.",
-      status: "Open to backend internships and remote work",
       ctaProjects: "View projects",
       ctaContact: "Get in touch",
       location: "Lima, Peru",
@@ -253,7 +245,7 @@ export const dict = {
       photoMeta: [
         ["role", "backend"],
         ["focus", "architecture"],
-        ["term", "7 / 10"],
+        ["stack", "java · ts"],
         ["status", "building"],
       ],
     },
@@ -263,9 +255,7 @@ export const dict = {
       statement:
         "Passionate about building solid solutions and always learning. I focus on how systems are designed: services with clear responsibilities, event-driven communication and data that lives where it should. My goal is to grow into technical leadership of development teams.",
       cards: [
-        { k: "now", v: "7th term · Information Systems Engineering, UPC" },
         { k: "focus", v: "Backend, software architecture and scalable systems" },
-        { k: "seeking", v: "Backend internships and remote work for US companies" },
         { k: "heading", v: "Technical leadership of development teams" },
       ],
     },
@@ -320,14 +310,9 @@ export const dict = {
       label: "journey",
       title: "git log --graph",
       present: "present",
-      next: {
-        message: "feat: backend internship",
-        detail: "Next commit — looking for a team.",
-      },
       upc: {
         message: "feat: Information Systems Engineering",
         org: "Universidad Peruana de Ciencias Aplicadas (UPC) · Lima, Peru",
-        detail: "Currently in my 7th term.",
       },
       safeway: {
         message: "work: Stocker at Safeway",
@@ -341,9 +326,7 @@ export const dict = {
     },
     contact: {
       label: "contact",
-      title: "Shall we build something",
-      titleAccent: "together?",
-      body: "I'm looking for backend internships and remote opportunities. If you have a project or a role, reach out.",
+      title: "Contact",
       copy: "Copy email",
       copied: "Copied!",
       whatsapp: "WhatsApp",
@@ -357,6 +340,7 @@ export const dict = {
       switchLang: "Switch to Spanish",
     },
     footer: "Designed and built by Carlos Andres Infantas Galindo",
+    nextPage: "Next",
   },
 };
 
