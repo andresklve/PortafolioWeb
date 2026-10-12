@@ -4,7 +4,8 @@ import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform, type MotionValue } from "motion/react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { coreStack, stack } from "@/lib/content";
+import { stack } from "@/lib/content";
+import { GlitchPhoto } from "./glitch-photo";
 import { useLanguage } from "./language-provider";
 import { ease } from "./ui";
 import photo from "../../public/images/yo.jpeg";
@@ -107,23 +108,6 @@ export function Hero() {
             <span className="caret ml-1 inline-block h-5 w-2.5 bg-accent" />
           </motion.div>
 
-          <motion.ul
-            initial="hidden"
-            animate="show"
-            variants={{ show: { transition: { delayChildren: 1.25, staggerChildren: 0.05 } } }}
-            className="mt-8 flex max-w-xl flex-wrap gap-2"
-            aria-label="Stack"
-          >
-            {coreStack.map((tech) => (
-              <motion.li
-                key={tech}
-                variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0 } }}
-                className="rounded-lg border border-line-strong bg-white/[0.03] px-3 py-1.5 font-mono text-xs text-fg transition-colors hover:border-accent hover:text-accent"
-              >
-                {tech}
-              </motion.li>
-            ))}
-          </motion.ul>
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -179,7 +163,7 @@ export function Hero() {
           }}
         >
           <motion.div style={{ rotateX, rotateY, transformStyle: "preserve-3d" }} className="relative">
-            <div className="group overflow-hidden rounded-2xl border border-line-strong bg-panel shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
+            <div className="overflow-hidden rounded-2xl border border-line-strong bg-panel shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
               <div className="flex items-center gap-2 border-b border-line px-4 py-3">
                 <span className="size-2.5 rounded-full bg-[#ff5f57]" />
                 <span className="size-2.5 rounded-full bg-[#febc2e]" />
@@ -187,21 +171,10 @@ export function Hero() {
                 <span className="ml-3 font-mono text-[11px] text-dim">~/profile/yo.jpeg</span>
               </div>
               <div className="relative aspect-[4/5] overflow-hidden">
-                <Image
-                  src={photo}
-                  alt="Carlos Andres Infantas Galindo"
-                  fill
-                  priority
-                  placeholder="blur"
-                  sizes="380px"
-                  className="object-cover object-[60%_40%] contrast-[1.15] grayscale brightness-[1.15] transition-all duration-700 group-hover:scale-[1.03] group-hover:grayscale-0"
-                />
-                <div className="absolute inset-0 bg-accent mix-blend-multiply opacity-25 transition-opacity duration-700 group-hover:opacity-0" />
-                <div className="scanlines absolute inset-0 opacity-40" />
-                <div className="scan-bar absolute inset-x-0 top-0 h-1/5 bg-gradient-to-b from-transparent via-accent/15 to-transparent" />
+                <GlitchPhoto src={photo} alt="Carlos Andres Infantas Galindo" />
                 {/* esquinas */}
                 {["left-3 top-3 border-l border-t", "right-3 top-3 border-r border-t", "left-3 bottom-3 border-l border-b", "right-3 bottom-3 border-r border-b"].map((c) => (
-                  <span key={c} className={`absolute size-5 border-accent ${c}`} />
+                  <span key={c} className={`pointer-events-none absolute size-5 border-accent ${c}`} />
                 ))}
               </div>
               <dl className="grid grid-cols-2 gap-px bg-line font-mono text-[11px]">

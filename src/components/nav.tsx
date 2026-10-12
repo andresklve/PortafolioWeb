@@ -7,7 +7,6 @@ import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { routes } from "@/lib/content";
 import { useLanguage } from "./language-provider";
-import { OPEN_PALETTE_EVENT } from "./command-palette";
 
 export function Nav() {
   const { t, lang, setLang } = useLanguage();
@@ -62,20 +61,7 @@ export function Nav() {
           })}
         </ul>
 
-        <button
-          type="button"
-          onClick={() => window.dispatchEvent(new Event(OPEN_PALETTE_EVENT))}
-          className="ml-auto hidden shrink-0 items-center gap-2 rounded-lg border border-line px-2.5 py-1.5 font-mono text-xs text-muted transition-colors hover:border-line-strong hover:text-fg sm:flex"
-        >
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <circle cx="11" cy="11" r="7" />
-            <path d="m20 20-3.5-3.5" />
-          </svg>
-          <span className="hidden lg:inline">{t.nav.palette}</span>
-          <kbd className="rounded border border-line px-1 text-[10px] text-dim">⌘K</kbd>
-        </button>
-
-        <div className="ml-auto flex shrink-0 items-center rounded-lg border border-line p-0.5 sm:ml-0" role="group" aria-label="Language">
+        <div className="ml-auto flex shrink-0 items-center rounded-lg border border-line p-0.5" role="group" aria-label="Language">
           {(
             [
               ["es", "/images/spain.jpg", "ES"],

@@ -17,7 +17,6 @@ export const routes = [
 ] as const;
 export type RouteId = (typeof routes)[number]["id"];
 
-export const coreStack = ["Java", "Spring Boot", "TypeScript", "NestJS", "PostgreSQL", "MongoDB", "Redis", "RabbitMQ", "Docker"];
 
 export const stack = [
   { key: "languages", items: ["Java", "TypeScript", "JavaScript", "Python"] },
@@ -91,7 +90,6 @@ export const dict = {
       projects: "proyectos",
       journey: "trayectoria",
       contact: "contacto",
-      palette: "Buscar",
     },
     boot: [
       "Montando /home/carlos",
@@ -162,7 +160,7 @@ export const dict = {
         portfolio: {
           kicker: "Este sitio · Frontend",
           description:
-            "Este mismo portafolio, construido desde cero con Next.js y TypeScript. Bilingüe (ES/EN), con animaciones, diagramas SVG en vivo y una paleta de comandos.",
+            "Este mismo portafolio, construido desde cero con Next.js y TypeScript. Bilingüe (ES/EN), con animaciones y diagramas SVG en vivo.",
         },
       },
       services: {
@@ -202,14 +200,6 @@ export const dict = {
       copied: "¡Copiado!",
       whatsapp: "WhatsApp",
     },
-    palette: {
-      placeholder: "Escribe un comando…",
-      empty: "Sin resultados.",
-      go: "Ir a",
-      open: "Abrir",
-      copyEmail: "Copiar correo",
-      switchLang: "Cambiar a inglés",
-    },
     footer: "Diseñado y construido por Carlos Andres Infantas Galindo",
     nextPage: "Siguiente",
   },
@@ -220,7 +210,6 @@ export const dict = {
       projects: "projects",
       journey: "journey",
       contact: "contact",
-      palette: "Search",
     },
     boot: [
       "Mounting /home/carlos",
@@ -291,7 +280,7 @@ export const dict = {
         portfolio: {
           kicker: "This site · Frontend",
           description:
-            "This very portfolio, built from scratch with Next.js and TypeScript. Bilingual (ES/EN), with animations, live SVG diagrams and a command palette.",
+            "This very portfolio, built from scratch with Next.js and TypeScript. Bilingual (ES/EN), with animations and live SVG diagrams.",
         },
       },
       services: {
@@ -330,14 +319,6 @@ export const dict = {
       copy: "Copy email",
       copied: "Copied!",
       whatsapp: "WhatsApp",
-    },
-    palette: {
-      placeholder: "Type a command…",
-      empty: "No results.",
-      go: "Go to",
-      open: "Open",
-      copyEmail: "Copy email",
-      switchLang: "Switch to Spanish",
     },
     footer: "Designed and built by Carlos Andres Infantas Galindo",
     nextPage: "Next",

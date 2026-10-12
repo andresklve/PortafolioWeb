@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { Background } from "@/components/background";
 import { BootScreen } from "@/components/boot-screen";
-import { CommandPalette } from "@/components/command-palette";
 import { LanguageProvider } from "@/components/language-provider";
 import { Nav } from "@/components/nav";
 import { SiteFooter } from "@/components/site-footer";
@@ -43,7 +42,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-screen">
         <LanguageProvider>
           <Background />
-          <CommandPalette />
           <BootScreen>
             <Nav />
             <main className="relative z-10">{children}</main>
